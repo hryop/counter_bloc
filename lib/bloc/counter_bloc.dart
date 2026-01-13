@@ -1,32 +1,21 @@
-import 'dart:async';
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 
-enum CounterEvent { Increment, Decrement }
+part 'counter_event.dart';
 
-class CounterBloc {
-  int counter = 0;
+part 'counter_state.dart';
 
-  CounterBloc() {
-    _eventController.stream.listen(_mapEventToState);
+class CounterBloc extends Bloc<CounterEvent, CounterState> {
+  CounterBloc() : super(CounterState(0)) {
+    on<IncrementEvent>(_OnIncrementEvent);
+    on<DecrementEvent>(_OnDecrementEvent);
   }
 
-  StreamController<CounterEvent> _eventController = StreamController<CounterEvent>();
-  StreamSink get eventSink => _eventController.sink;
-
-  StreamController<int> _counterController = StreamController<int>();
-  StreamSink<int> get _counterSink => _counterController.sink;
-  Stream<int> get counterStream => _counterController.stream;
-
-  void _mapEventToState(CounterEvent event) {
-    if (event == CounterEvent.Increment) {
-      counter++;
-    } else {
-      counter--;
-    }
-    _counterSink.add(counter);
+  _OnIncrementEvent(event, emit) {
+    emit(CounterState(state.value + 1));
   }
 
-  void dispose() {
-    _eventController.close();
-    _counterController.close();
+  _OnDecrementEvent(event, emit) {
+    emit(CounterState(state.value - 1));
   }
 }

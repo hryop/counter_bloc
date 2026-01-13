@@ -1,5 +1,6 @@
 import 'package:counter_bloc/bloc/counter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -15,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    counterBloc.dispose();
+    counterBloc.close();
     super.dispose();
   }
 
@@ -26,16 +27,15 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: StreamBuilder(
-        stream: counterBloc.counterStream,
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+      body: BlocBuilder<CounterBloc, CounterState>(
+        builder: (context, state) {
           return Center(
             child: Column(
               mainAxisAlignment: .center,
               children: [
                 const Text('You have pushed the button this many times:'),
                 Text(
-                  '${snapshot.data}',
+                  '${state.value}',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ],
@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       children: [
         FloatingActionButton(
           onPressed: () {
-            counterBloc.eventSink.add(CounterEvent.Decrement);
+            context.read<CounterBloc>().add(DecrementEvent());
           },
           tooltip: 'Decrement',
           child: Icon(Icons.remove),
@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
         SizedBox(width: 8),
         FloatingActionButton(
           onPressed: () {
-            counterBloc.eventSink.add(CounterEvent.Increment);
+            context.read<CounterBloc>().add(IncrementEvent());
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),
