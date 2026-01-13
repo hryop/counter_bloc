@@ -1,4 +1,4 @@
-import 'package:counter_bloc/bloc/counter_bloc.dart';
+import 'package:counter_bloc/cubit/counter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,11 +12,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final counterBloc = CounterBloc();
+  final counterCubit = CounterCubit();
 
   @override
   void dispose() {
-    counterBloc.close();
+    counterCubit.close();
     super.dispose();
   }
 
@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: BlocBuilder<CounterBloc, CounterState>(
+      body: BlocBuilder<CounterCubit, CounterState>(
         builder: (context, state) {
           return Center(
             child: Column(
@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       children: [
         FloatingActionButton(
           onPressed: () {
-            context.read<CounterBloc>().add(DecrementEvent());
+            context.read<CounterCubit>().decrement();
           },
           tooltip: 'Decrement',
           child: Icon(Icons.remove),
@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
         SizedBox(width: 8),
         FloatingActionButton(
           onPressed: () {
-            context.read<CounterBloc>().add(IncrementEvent());
+            context.read<CounterCubit>().increment();
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),

@@ -1,6 +1,6 @@
-import 'package:counter_bloc/bloc/counter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'cubit/counter_cubit.dart';
 import 'pages/my_home_page.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       home: BlocProvider(
-        create: (context) => CounterBloc(),
+        create: (context) => CounterCubit(),
         child: MyHomePage(title: 'Flutter Demo Home Page'),
       ),
     );
