@@ -1,16 +1,19 @@
 # counter_bloc
 
-A new Flutter project.
+This is practice project on how to use BLoC from [Dicoding Reactive Programming Class](https://www.dicoding.com/academies/199-menjadi-flutter-developer-expert#course-syllabus-section)
 
-## Getting Started
+## Build App Setup Recomendation
+- Flutter 3.38.6
+- Dart 3.10.0
+- JBR 21
 
-This project is a starting point for a Flutter application.
+## Code Design & Structure
 
-A few resources to get you started if this is your first Flutter project:
+### main
+implementing BLoC state management using flutter stream classes
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### feat-with-bloc-package
+implementing BLoC state management using [flutter_bloc](https://pub.dev/packages/flutter_bloc) package
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### feat-with-cubit-bloc-package
+mplementing BLoC state management using Cubit from [flutter_bloc](https://pub.dev/packages/flutter_bloc) package
