@@ -8,6 +8,12 @@ This is practice project on how to use BLoC from [Dicoding Reactive Programming 
 - JBR 21
 
 ## Code Design & Structure
-- main = implementing BLoC state management using flutter stream classes
-- feat-with-bloc-package = implementing BLoC state management using [flutter_bloc](https://pub.dev/packages/flutter_bloc) package
-- feat-with-cubit-bloc-package = implementing BLoC state management using Cubit from [flutter_bloc](https://pub.dev/packages/flutter_bloc) package
+
+### main
+implementing BLoC state management using flutter stream classes
+
+### feat-with-bloc-package
+implementing BLoC state management using [flutter_bloc](https://pub.dev/packages/flutter_bloc) package
+
+### feat-with-cubit-bloc-package
+mplementing BLoC state management using Cubit from [flutter_bloc](https://pub.dev/packages/flutter_bloc) package
